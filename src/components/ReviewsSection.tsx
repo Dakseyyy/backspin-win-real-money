@@ -3,8 +3,8 @@ import { Star, Quote } from "lucide-react";
 
 const reviews = [
   {
-    text: "I've tried a lot of bingo apps, and this one is by far my favorite. There's more than just bingo, and I love being able to replay matches to see my opponent's strategy — it proves you're playing real people.",
-    author: "Happy Player",
+    text: "I've tried a lot of bingo apps, and this one is by far my favorite. There's more than just bingo, and I love being able to replay matches to see my opponent's strategy, it proves you're playing real people.",
+    author: "Verified User",
     stars: 5,
   },
   {
@@ -14,7 +14,7 @@ const reviews = [
   },
   {
     text: "Super easy to start, and the cash outs are real. Way better than normal mobile games.",
-    author: "New Player",
+    author: "Verified User",
     stars: 5,
   },
 ];

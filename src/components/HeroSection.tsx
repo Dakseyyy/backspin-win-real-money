@@ -1,7 +1,59 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
+declare global {
+  interface Window {
+    snaptr: any;
+  }
+}
+
+const BASE_AFFILIATE_URL = "https://gloffers.org/aff_c?offer_id=4016&aff_id=158638";
+
 const HeroSection = () => {
+  // Stable Affiliate Link Generation for Snapchat Only
+  const affiliateLink = useMemo(() => {
+    if (typeof window === "undefined") return BASE_AFFILIATE_URL;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    // Snapchat often uses ScCid, but trackers sometimes lowercase it to sccid
+    const sccid = urlParams.get("ScCid") || urlParams.get("sccid");
+
+    let newLink = BASE_AFFILIATE_URL;
+
+    if (sccid) {
+      // Pass sccid into aff_sub so your postback {aff_sub} maps to sccid on your server
+      newLink += `&aff_sub=${sccid}&sccid=${sccid}`;
+    }
+    
+    return newLink;
+  }, []);
+
+  const trackSnap = (eventName: string) => {
+    console.log(`📡 [Snapchat Tracking] Firing: ${eventName}`);
+
+    if (typeof window !== "undefined" && window.snaptr) {
+      let snapEvent = 'PAGE_VIEW';
+      if (eventName === 'ViewContent') snapEvent = 'PAGE_VIEW';
+      if (eventName === 'SubmitForm') snapEvent = 'VIEW_CONTENT'; 
+      if (eventName === 'ClickButton') snapEvent = 'AD_CLICK';
+      
+      window.snaptr('track', snapEvent);
+    }
+  };
+
+  const handleCtaClick = (e: React.MouseEvent) => {
+    e.preventDefault(); 
+    trackSnap("ClickButton");
+    
+    console.log(`🔗 Redirecting to: ${affiliateLink}`);
+    
+    // Increased timeout slightly to ensure the Snap pixel fires before navigation
+    setTimeout(() => {
+      window.location.href = affiliateLink;
+    }, 25);
+  };
+
   return (
     <section className="relative min-h-[100dvh] flex flex-col items-center justify-center section-padding overflow-hidden">
       {/* Subtle radial glow */}
@@ -43,7 +95,8 @@ const HeroSection = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.a
-            href="#"
+            href={affiliateLink}
+            onClick={handleCtaClick}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center rounded-full bg-foreground text-background font-semibold px-8 py-4 text-base transition-all hover:bg-highlight"
