@@ -28,7 +28,8 @@ const ReviewsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          style={{ willChange: "transform, opacity" }}
+          className="text-center mb-16 transform-gpu"
         >
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Players love it
@@ -46,7 +47,8 @@ const ReviewsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card rounded-2xl p-8 flex flex-col"
+              style={{ willChange: "transform, opacity" }}
+              className="glass-card rounded-2xl p-8 flex flex-col transform-gpu"
             >
               <Quote className="w-8 h-8 text-muted-foreground/30 mb-4" />
               <div className="flex gap-0.5 mb-4">

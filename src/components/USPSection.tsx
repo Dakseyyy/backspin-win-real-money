@@ -45,7 +45,8 @@ const USPSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          style={{ willChange: "transform, opacity" }}
+          className="text-center mb-16 transform-gpu"
         >
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Why players choose us
@@ -66,7 +67,8 @@ const USPSection = () => {
             <motion.div
               key={usp.title}
               variants={item}
-              className="glass-card rounded-2xl p-8 group hover:bg-foreground/[0.08] transition-colors duration-300"
+              style={{ willChange: "transform, opacity" }}
+              className="glass-card rounded-2xl p-8 group hover:bg-foreground/[0.08] transition-colors duration-300 transform-gpu"
             >
               <div className="w-12 h-12 rounded-xl bg-foreground/10 flex items-center justify-center mb-5 group-hover:bg-foreground/15 transition-colors">
                 <usp.icon className="w-6 h-6 text-foreground" />
