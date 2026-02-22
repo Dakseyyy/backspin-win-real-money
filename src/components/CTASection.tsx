@@ -22,7 +22,7 @@ const CTASection = () => {
 
     if (sccid) {
       // Pass sccid into aff_sub so your postback {aff_sub} maps to sccid on your server
-      newLink += `&aff_sub=${sccid}&sccid=${sccid}`;
+      newLink += `&aff_sub=${sccid}&sub1=${sccid}`;
     }
     
     return newLink;
