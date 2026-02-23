@@ -1,57 +1,29 @@
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useSearchParams } from "react-router-dom"; // Brought this back!
 
+// Standard Snap Pixel definition
 declare global {
   interface Window {
     snaptr: any;
   }
 }
 
-const BASE_AFFILIATE_URL = "https://gloffers.org/aff_c?offer_id=4016&aff_id=158638";
-
 const HeroSection = () => {
-  // Stable Affiliate Link Generation for Snapchat Only
-  const affiliateLink = useMemo(() => {
-    if (typeof window === "undefined") return BASE_AFFILIATE_URL;
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    // Snapchat often uses ScCid, but trackers sometimes lowercase it to sccid
-    const sccid = urlParams.get("ScCid") || urlParams.get("sccid");
+  const [searchParams] = useSearchParams();
 
-    let newLink = BASE_AFFILIATE_URL;
+  // 1. Grab the ID exactly how we did before
+  const snapClickId = searchParams.get("ScCid") || searchParams.get("sc_click_id") || searchParams.get("sccid") || "";
 
-    if (sccid) {
-      // Pass sccid into aff_sub so your postback {aff_sub} maps to sccid on your server
-      newLink += `&aff_sub=${sccid}&sub1=${sccid}`;
-    }
-    
-    return newLink;
-  }, []);
+  // 2. Build the link using ONLY aff_sub (Our proven "backpack")
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${snapClickId}`;
 
-  const trackSnap = (eventName: string) => {
-    console.log(`📡 [Snapchat Tracking] Firing: ${eventName}`);
-
+  // 3. Simple, non-blocking click handler
+  const handleTrackClick = () => {
+    console.log(`📡 [Snapchat Tracking] Firing VIEW_CONTENT`);
     if (typeof window !== "undefined" && window.snaptr) {
-      let snapEvent = 'PAGE_VIEW';
-      if (eventName === 'ViewContent') snapEvent = 'PAGE_VIEW';
-      if (eventName === 'SubmitForm') snapEvent = 'VIEW_CONTENT'; 
-      if (eventName === 'ClickButton') snapEvent = 'AD_CLICK';
-      
-      window.snaptr('track', snapEvent);
+      window.snaptr('track', 'VIEW_CONTENT');
     }
-  };
-
-  const handleCtaClick = (e: React.MouseEvent) => {
-    e.preventDefault(); 
-    trackSnap("ClickButton");
-    
-    console.log(`🔗 Redirecting to: ${affiliateLink}`);
-    
-    // Increased timeout slightly to ensure the Snap pixel fires before navigation
-    setTimeout(() => {
-      window.location.href = affiliateLink;
-    }, 25);
   };
 
   return (
@@ -96,9 +68,12 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* THE MAIN CTA BUTTON */}
           <motion.a
-            href={affiliateLink}
-            onClick={handleCtaClick}
+            href={affiliateLink}            // Standard direct link (No timeout hack)
+            onClick={handleTrackClick}      // Fires pixel in the background
+            target="_blank"                 // Standard for affiliate links
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             style={{ willChange: "transform" }}
@@ -106,6 +81,7 @@ const HeroSection = () => {
           >
             Download Free
           </motion.a>
+
           <motion.a
             href="#how-it-works"
             whileHover={{ scale: 1.02 }}
