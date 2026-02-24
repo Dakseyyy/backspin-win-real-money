@@ -4,18 +4,30 @@ import { useSearchParams } from "react-router-dom";
 const CTASection = () => {
   const [searchParams] = useSearchParams();
 
-  // 1. Get Snapchat ID from URL (Added the 'sccid' fallback just like the HeroSection)
+  // 1. Capture Click IDs for both platforms
   const snapClickId = searchParams.get("ScCid") || searchParams.get("sc_click_id") || searchParams.get("sccid") || "";
+  const tiktokClickId = searchParams.get("ttclid") || "";
 
-  // 2. Add it to 'aff_sub' with the NEW offer_id (4016)
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${snapClickId}`;
+  // 2. Determine which platform is driving the traffic (fallback to 'couldnotfindid' if neither)
+  const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
+
+  // 3. Add the active click ID to 'aff_sub' with the offer_id (4016)
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   const handleTrackClick = () => {
-    // Fire Pixel 'View Content'
+    // Fire Snapchat Pixel 'View Content' if the Snap pixel is loaded
     if (typeof window !== "undefined" && (window as any).snaptr) {
       (window as any).snaptr('track', 'VIEW_CONTENT', {
         'content_ids': ['4016'],
         'content_type': 'product'
+      });
+    }
+
+    // Fire TikTok Pixel 'ViewContent' if the TikTok pixel is loaded
+    if (typeof window !== "undefined" && (window as any).ttq) {
+      (window as any).ttq.track('ViewContent', {
+        content_id: '4016',
+        content_type: 'product'
       });
     }
   };

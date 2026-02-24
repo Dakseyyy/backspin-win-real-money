@@ -1,28 +1,43 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { useSearchParams } from "react-router-dom"; // Brought this back!
+import { useSearchParams } from "react-router-dom";
 
-// Standard Snap Pixel definition
+// Standard Snap & TikTok Pixel definition
 declare global {
   interface Window {
     snaptr: any;
+    ttq: any;
   }
 }
 
 const HeroSection = () => {
   const [searchParams] = useSearchParams();
 
-  // 1. Grab the ID exactly how we did before
+  // 1. Capture Click IDs for both platforms
   const snapClickId = searchParams.get("ScCid") || searchParams.get("sc_click_id") || searchParams.get("sccid") || "";
+  const tiktokClickId = searchParams.get("ttclid") || "";
 
-  // 2. Build the link using ONLY aff_sub (Our proven "backpack")
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${snapClickId}`;
+  // 2. Determine which platform is driving the traffic (fallback to 'couldnotfindid' if neither)
+  const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
-  // 3. Simple, non-blocking click handler
+  // 3. Build the link using ONLY aff_sub (Our proven "backpack")
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
+
+  // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
-    console.log(`📡 [Snapchat Tracking] Firing VIEW_CONTENT`);
+    console.log(`📡 [Tracking] Firing events`);
+    
+    // Fire Snapchat Pixel 'View Content'
     if (typeof window !== "undefined" && window.snaptr) {
       window.snaptr('track', 'VIEW_CONTENT');
+    }
+
+    // Fire TikTok Pixel 'ClickButton' (no ViewContent, as requested)
+    if (typeof window !== "undefined" && window.ttq) {
+      window.ttq.track('ClickButton', {
+        content_id: '4016',
+        content_type: 'product'
+      });
     }
   };
 
@@ -71,7 +86,7 @@ const HeroSection = () => {
           {/* THE MAIN CTA BUTTON */}
           <motion.a
             href={affiliateLink}            // Standard direct link (No timeout hack)
-            onClick={handleTrackClick}      // Fires pixel in the background
+            onClick={handleTrackClick}      // Fires pixels in the background
             target="_blank"                 // Standard for affiliate links
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
