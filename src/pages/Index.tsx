@@ -11,7 +11,7 @@ const Index = () => {
       <USPSection />
       <ReviewsSection />
       <CTASection />
-      <Footer />
+
     </main>
   );
 };
