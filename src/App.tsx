@@ -375,8 +375,8 @@ const SimpleSite = () => {
 };
 
 const ComplexApp = () => (
- <h1>Client Error</h1>
-  /*<QueryClientProvider client={queryClient}>
+
+  <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -388,7 +388,7 @@ const ComplexApp = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-  </QueryClientProvider> */
+  </QueryClientProvider> 
 );
 
 const App = () => {
