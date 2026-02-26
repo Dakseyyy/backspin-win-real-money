@@ -375,19 +375,20 @@ const SimpleSite = () => {
 };
 
 const ComplexApp = () => (
-  <QueryClientProvider client={queryClient}>
+ <h1>Client Error</h1>
+  /*<QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-  </QueryClientProvider>
+  </QueryClientProvider> */
 );
 
 const App = () => {

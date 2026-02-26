@@ -21,7 +21,7 @@ const HeroSection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Build the link using ONLY aff_sub (Our proven "backpack")
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&`;
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
