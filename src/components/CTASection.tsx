@@ -24,12 +24,7 @@ const CTASection = () => {
     }
 
     // Fire TikTok Pixel 'ViewContent' if the TikTok pixel is loaded
-    if (typeof window !== "undefined" && (window as any).ttq) {
-      (window as any).ttq.track('ViewContent', {
-        content_id: '4016',
-        content_type: 'product'
-      });
-    }
+   
   };
 
   return (

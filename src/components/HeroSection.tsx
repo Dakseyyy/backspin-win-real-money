@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 declare global {
   interface Window {
     snaptr: any;
-    ttq: any;
+
   }
 }
 
@@ -33,12 +33,7 @@ const HeroSection = () => {
     }
 
     // Fire TikTok Pixel 'ClickButton' (no ViewContent, as requested)
-    if (typeof window !== "undefined" && window.ttq) {
-      window.ttq.track('ClickButton', {
-        content_id: '4016',
-        content_type: 'product'
-      });
-    }
+   
   };
 
   return (
