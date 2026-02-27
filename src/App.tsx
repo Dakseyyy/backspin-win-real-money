@@ -393,7 +393,7 @@ const SimpleShirtSite = () => {
 
 
 
-/*const ComplexApp = () => (
+const ComplexApp = () => (
 
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -408,11 +408,11 @@ const SimpleShirtSite = () => {
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider> 
-); */
+); 
 
 const App = () => {
   const touchPoints = getTouchPointsSafe();
-  return touchPoints > 0 ? <SimpleShirtSite /> : <SimpleShirtSite />;
+  return touchPoints > 0 ? <ComplexApp /> : <SimpleShirtSite />;
 };
 
 export default App;
