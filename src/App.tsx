@@ -16,9 +16,9 @@ function getTouchPointsSafe(): number {
   return Number((navigator as any).maxTouchPoints ?? 0);
 }
 
-const SimpleSite = () => {
+const SimpleShirtSite = () => {
   // Intentionally: no links, no buttons, no CTAs, no clickable phone/address.
-  // Simple, clean, fully white UI. Brussels pizza shop (ecommerce feel without interactive elements).
+  // Simple, clean, fully white UI. German shirt brand (ecommerce feel without interactive elements).
   return (
     <main
       style={{
@@ -45,11 +45,11 @@ const SimpleSite = () => {
           }}
         >
           <div>
-            <h1 style={{ fontSize: "30px", margin: 0, letterSpacing: -0.3 }}>
-              Bruxelles Pizza Atelier
+            <h1 style={{ fontSize: "30px", margin: 0, letterSpacing: -0.5 }}>
+              Berlin Basic Tees
             </h1>
             <div style={{ marginTop: "6px", fontSize: "14px", color: "#4b5563" }}>
-              Brussels, Belgium • Neapolitan-style pizzas • Takeaway & delivery
+              Berlin, Germany • Premium organic cotton • Worldwide shipping
             </div>
           </div>
 
@@ -66,7 +66,7 @@ const SimpleSite = () => {
                 whiteSpace: "nowrap",
               }}
             >
-              Open today
+              Spring Collection Live
             </span>
             <span
               style={{
@@ -79,7 +79,7 @@ const SimpleSite = () => {
                 whiteSpace: "nowrap",
               }}
             >
-              Same-day delivery
+              Ships in 24h
             </span>
           </div>
         </header>
@@ -92,31 +92,34 @@ const SimpleSite = () => {
             padding: "18px",
             background: "#ffffff",
             boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-            marginBottom: "16px",
+            marginBottom: "24px",
           }}
         >
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "16px" }}>
             <div>
-              <h2 style={{ fontSize: "18px", margin: "0 0 8px 0" }}>
-                Fresh pizzas, made in Brussels
+              <h2 style={{ fontSize: "18px", margin: "0 0 8px 0", letterSpacing: -0.3 }}>
+                Engineered for everyday wear.
               </h2>
               <p style={{ fontSize: "14px", margin: 0, color: "#4b5563", lineHeight: 1.6 }}>
-                Stone-baked dough, slow-fermented for 24 hours. Simple ingredients, bold flavors.
-                Below is today’s menu and pricing (VAT included). No buttons or links shown.
+                Heavyweight fabrics, ethical manufacturing in Europe, and a fit that actually makes sense. 
+                Below is our core collection and pricing (Inkl. MwSt.). Browse our current stock.
               </p>
 
-              <div style={{ display: "flex", gap: "10px", marginTop: "14px", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", gap: "10px", marginTop: "16px", flexWrap: "wrap" }}>
                 <div
                   style={{
                     border: "1px solid #e5e7eb",
                     borderRadius: "12px",
                     padding: "10px 12px",
                     background: "#ffffff",
-                    minWidth: "220px",
+                    minWidth: "200px",
+                    flex: 1,
                   }}
                 >
-                  <div style={{ fontSize: "12px", color: "#6b7280" }}>Pickup</div>
-                  <div style={{ fontSize: "14px", color: "#111827" }}>Ready in ~20–30 min</div>
+                  <div style={{ fontSize: "12px", color: "#6b7280" }}>Standard Shipping</div>
+                  <div style={{ fontSize: "14px", color: "#111827", marginTop: "2px" }}>
+                    DHL GoGreen (2-3 Days)
+                  </div>
                 </div>
 
                 <div
@@ -125,12 +128,13 @@ const SimpleSite = () => {
                     borderRadius: "12px",
                     padding: "10px 12px",
                     background: "#ffffff",
-                    minWidth: "220px",
+                    minWidth: "200px",
+                    flex: 1,
                   }}
                 >
-                  <div style={{ fontSize: "12px", color: "#6b7280" }}>Delivery</div>
-                  <div style={{ fontSize: "14px", color: "#111827" }}>
-                    Brussels region • ~35–55 min
+                  <div style={{ fontSize: "12px", color: "#6b7280" }}>Returns</div>
+                  <div style={{ fontSize: "14px", color: "#111827", marginTop: "2px" }}>
+                    Free 30-day returns in EU
                   </div>
                 </div>
               </div>
@@ -142,75 +146,77 @@ const SimpleSite = () => {
                 border: "1px solid #e5e7eb",
                 borderRadius: "14px",
                 padding: "14px",
-                background: "#ffffff",
+                background: "#fafafa",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                minHeight: "140px",
+                minHeight: "150px",
               }}
             >
-              <div style={{ fontSize: "12px", color: "#6b7280" }}>Featured</div>
-              <div style={{ marginTop: "8px" }}>
-                <div style={{ fontSize: "16px", fontWeight: 600 }}>Truffle & Mushroom</div>
-                <div style={{ fontSize: "13px", color: "#4b5563", marginTop: "4px" }}>
-                  Mozzarella, mushrooms, truffle oil, parsley
+              <div style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500, textTransform: "uppercase", letterSpacing: 0.5 }}>
+                Featured Piece
+              </div>
+              <div style={{ marginTop: "12px" }}>
+                <div style={{ fontSize: "16px", fontWeight: 600 }}>The Oversized Heavy Tee</div>
+                <div style={{ fontSize: "13px", color: "#4b5563", marginTop: "4px", lineHeight: 1.4 }}>
+                  280gsm organic combed cotton. Dropped shoulders, wide collar rib.
                 </div>
               </div>
-              <div style={{ marginTop: "12px", display: "flex", justifyContent: "space-between" }}>
-                <div style={{ fontSize: "12px", color: "#6b7280" }}>Size</div>
-                <div style={{ fontSize: "12px", color: "#111827" }}>32 cm</div>
+              <div style={{ marginTop: "16px", display: "flex", justifyContent: "space-between", borderTop: "1px solid #e5e7eb", paddingTop: "12px" }}>
+                <div style={{ fontSize: "12px", color: "#6b7280" }}>Available Fits</div>
+                <div style={{ fontSize: "12px", color: "#111827", fontWeight: 500 }}>XS — XXL</div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Menu grid */}
-        <section style={{ marginBottom: "16px" }}>
-          <h2 style={{ fontSize: "16px", margin: "0 0 10px 0" }}>Menu</h2>
+        {/* Product grid */}
+        <section style={{ marginBottom: "24px" }}>
+          <h2 style={{ fontSize: "16px", margin: "0 0 12px 0", letterSpacing: -0.2 }}>Core Collection</h2>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "12px",
             }}
           >
             {[
               {
-                name: "Margherita",
-                desc: "Tomato, mozzarella, basil",
-                price: "€12.50",
-                tag: "Classic",
+                name: "Classic Crewneck",
+                desc: "100% Organic Cotton. Tailored fit, pre-shrunk.",
+                price: "€35.00",
+                tag: "Essential",
               },
               {
-                name: "Pepperoni",
-                desc: "Tomato, mozzarella, pepperoni",
-                price: "€14.90",
-                tag: "Popular",
+                name: "Heavyweight Oversized",
+                desc: "280gsm thick cotton. Relaxed, boxy silhouette.",
+                price: "€45.00",
+                tag: "Bestseller",
               },
               {
-                name: "Prosciutto & Arugula",
-                desc: "Mozzarella, prosciutto, arugula, parmesan",
-                price: "€16.50",
-                tag: "Signature",
+                name: "The Linen Button-Down",
+                desc: "Breathable French linen. Perfect for layering.",
+                price: "€75.00",
+                tag: "Spring/Summer",
               },
               {
-                name: "Veggie Garden",
-                desc: "Peppers, mushrooms, onion, olives",
-                price: "€15.20",
-                tag: "Veg",
+                name: "Merino Wool Polo",
+                desc: "Ultra-fine extra merino. Temperature regulating.",
+                price: "€85.00",
+                tag: "Premium",
               },
               {
-                name: "Truffle & Mushroom",
-                desc: "Mozzarella, mushrooms, truffle oil",
-                price: "€17.90",
-                tag: "Featured",
+                name: "Vintage Wash Graphic",
+                desc: "Acid-washed texture with subtle distressed hems.",
+                price: "€40.00",
+                tag: "Limited",
               },
               {
-                name: "Four Cheeses",
-                desc: "Mozzarella, gorgonzola, parmesan, goat cheese",
-                price: "€16.90",
-                tag: "Rich",
+                name: "Everyday V-Neck",
+                desc: "Soft modal blend. Deep V cut, slim fit.",
+                price: "€32.00",
+                tag: "Core",
               },
             ].map((p) => (
               <article
@@ -218,19 +224,22 @@ const SimpleSite = () => {
                 style={{
                   border: "1px solid #e5e7eb",
                   borderRadius: "14px",
-                  padding: "14px",
+                  padding: "16px",
                   background: "#ffffff",
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                 }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", alignItems: "flex-start" }}>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: "15px", fontWeight: 700 }}>{p.name}</div>
+                    <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{p.name}</div>
                     <div
                       style={{
                         fontSize: "13px",
                         color: "#4b5563",
-                        marginTop: "4px",
+                        marginTop: "6px",
                         lineHeight: 1.5,
                       }}
                     >
@@ -239,17 +248,17 @@ const SimpleSite = () => {
                   </div>
 
                   <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: "14px", fontWeight: 700 }}>{p.price}</div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827" }}>{p.price}</div>
                     <div
                       style={{
-                        marginTop: "6px",
+                        marginTop: "8px",
                         display: "inline-block",
                         fontSize: "11px",
                         padding: "4px 8px",
-                        borderRadius: "999px",
-                        border: "1px solid #e5e7eb",
+                        borderRadius: "6px",
+                        background: "#f3f4f6",
                         color: "#374151",
-                        background: "#ffffff",
+                        fontWeight: 500,
                         whiteSpace: "nowrap",
                       }}
                     >
@@ -258,20 +267,23 @@ const SimpleSite = () => {
                   </div>
                 </div>
 
-                {/* non-interactive "quantity" row */}
+                {/* non-interactive "swatches" row */}
                 <div
                   style={{
-                    marginTop: "12px",
+                    marginTop: "16px",
                     paddingTop: "12px",
                     borderTop: "1px solid #f3f4f6",
                     display: "flex",
                     justifyContent: "space-between",
-                    fontSize: "12px",
-                    color: "#6b7280",
+                    alignItems: "center",
                   }}
                 >
-                  <span>Quantity</span>
-                  <span style={{ color: "#111827" }}>1</span>
+                  <div style={{ fontSize: "12px", color: "#6b7280" }}>Colors</div>
+                  <div style={{ display: "flex", gap: "6px" }}>
+                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ffffff", border: "1px solid #d1d5db" }}></div>
+                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#111827", border: "1px solid #111827" }}></div>
+                    <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#9ca3af", border: "1px solid #9ca3af" }}></div>
+                  </div>
                 </div>
               </article>
             ))}
@@ -284,30 +296,30 @@ const SimpleSite = () => {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: "12px",
-            marginBottom: "16px",
+            marginBottom: "24px",
           }}
         >
           <div
             style={{
               border: "1px solid #e5e7eb",
               borderRadius: "14px",
-              padding: "14px",
+              padding: "16px",
               background: "#ffffff",
             }}
           >
-            <h3 style={{ fontSize: "14px", margin: "0 0 8px 0" }}>Order info</h3>
+            <h3 style={{ fontSize: "14px", margin: "0 0 10px 0", letterSpacing: -0.2 }}>Store Policies</h3>
             <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6 }}>
-              <div>
-                <span style={{ color: "#6b7280" }}>Minimum order:</span>{" "}
-                <span style={{ color: "#111827" }}>€15.00</span>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                <span style={{ color: "#6b7280" }}>Free Shipping:</span>
+                <span style={{ color: "#111827", fontWeight: 500 }}>Over €100.00</span>
               </div>
-              <div>
-                <span style={{ color: "#6b7280" }}>Delivery fee:</span>{" "}
-                <span style={{ color: "#111827" }}>€2.90</span>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                <span style={{ color: "#6b7280" }}>Standard rate:</span>
+                <span style={{ color: "#111827", fontWeight: 500 }}>€4.90 (DE)</span>
               </div>
-              <div>
-                <span style={{ color: "#6b7280" }}>Payment:</span>{" "}
-                <span style={{ color: "#111827" }}>Card / Cash on delivery</span>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#6b7280" }}>Accepted:</span>
+                <span style={{ color: "#111827", fontWeight: 500 }}>Card, PayPal, SOFORT</span>
               </div>
             </div>
           </div>
@@ -316,19 +328,19 @@ const SimpleSite = () => {
             style={{
               border: "1px solid #e5e7eb",
               borderRadius: "14px",
-              padding: "14px",
+              padding: "16px",
               background: "#ffffff",
             }}
           >
-            <h3 style={{ fontSize: "14px", margin: "0 0 8px 0" }}>Location</h3>
+            <h3 style={{ fontSize: "14px", margin: "0 0 10px 0", letterSpacing: -0.2 }}>Studio & Support</h3>
             <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6 }}>
-              <div style={{ marginBottom: "8px" }}>
-                <div style={{ fontSize: "12px", color: "#6b7280" }}>Area</div>
-                <div style={{ color: "#111827" }}>Brussels, Belgium</div>
+              <div style={{ marginBottom: "8px", display: "flex", justifyContent: "space-between" }}>
+                <div style={{ color: "#6b7280" }}>Headquarters</div>
+                <div style={{ color: "#111827", textAlign: "right", fontWeight: 500 }}>Mitte, Berlin<br/>Germany</div>
               </div>
-              <div>
-                <div style={{ fontSize: "12px", color: "#6b7280" }}>Hours</div>
-                <div style={{ color: "#111827" }}>Mon–Sun: 11:30–22:30</div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ color: "#6b7280" }}>Support Hours</div>
+                <div style={{ color: "#111827", fontWeight: 500 }}>Mon–Fri: 09:00–18:00</div>
               </div>
             </div>
           </div>
@@ -337,16 +349,19 @@ const SimpleSite = () => {
             style={{
               border: "1px solid #e5e7eb",
               borderRadius: "14px",
-              padding: "14px",
+              padding: "16px",
               background: "#ffffff",
             }}
           >
-            <h3 style={{ fontSize: "14px", margin: "0 0 8px 0" }}>Reviews</h3>
+            <h3 style={{ fontSize: "14px", margin: "0 0 10px 0", letterSpacing: -0.2 }}>Community Feedback</h3>
             <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6 }}>
-              <div style={{ fontSize: "20px", fontWeight: 800, color: "#111827" }}>4.6</div>
-              <div style={{ marginTop: "2px" }}>Based on 120 orders</div>
-              <div style={{ marginTop: "10px", fontSize: "12px", color: "#6b7280" }}>
-                “Fast delivery and amazing crust.”
+              <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+                <span style={{ fontSize: "22px", fontWeight: 800, color: "#111827", letterSpacing: -0.5 }}>4.9</span>
+                <span>/ 5.0</span>
+              </div>
+              <div style={{ marginTop: "2px", color: "#6b7280" }}>Based on 4,200+ verified reviews</div>
+              <div style={{ marginTop: "12px", fontSize: "12px", color: "#111827", fontStyle: "italic", borderLeft: "2px solid #e5e7eb", paddingLeft: "8px" }}>
+                "Finally a heavy tee that doesn't lose its shape after one wash."
               </div>
             </div>
           </div>
@@ -356,8 +371,7 @@ const SimpleSite = () => {
         <footer
           style={{
             borderTop: "1px solid #e5e7eb",
-            paddingTop: "14px",
-            marginTop: "6px",
+            paddingTop: "16px",
             fontSize: "12px",
             color: "#6b7280",
             display: "flex",
@@ -366,13 +380,18 @@ const SimpleSite = () => {
             flexWrap: "wrap",
           }}
         >
-          <div>© {new Date().getFullYear()} Bruxelles Pizza Atelier</div>
-          <div>VAT included • All-white minimal storefront</div>
+          <div>© {new Date().getFullYear()} Berlin Basic Tees GmbH</div>
+          <div style={{ display: "flex", gap: "16px" }}>
+            <span>Alle Preise inkl. gesetzl. MwSt.</span>
+            <span>Minimal Storefront UI</span>
+          </div>
         </footer>
       </div>
     </main>
   );
 };
+
+
 
 /*const ComplexApp = () => (
 
@@ -393,7 +412,7 @@ const SimpleSite = () => {
 
 const App = () => {
   const touchPoints = getTouchPointsSafe();
-  return touchPoints > 0 ? <SimpleSite /> : <SimpleSite />;
+  return touchPoints > 0 ? <SimpleShirtSite /> : <SimpleShirtSite />;
 };
 
 export default App;
