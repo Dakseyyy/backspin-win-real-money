@@ -12,7 +12,7 @@ const CTASection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Add the active click ID to 'aff_sub' with the offer_id (4016)
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638`;
 
   const handleTrackClick = () => {
     // Fire Snapchat Pixel 'View Content' if the Snap pixel is loaded
