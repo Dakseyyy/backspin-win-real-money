@@ -24,13 +24,7 @@ const CTASection = () => {
     }
 
     // Fire TikTok Pixel 'ClickButton' via the client-side window object
-    if (typeof window !== "undefined" && (window as any).ttq) {
-      console.log(`📡 [Tracking - CTA] Firing TikTok ClickButton client-side`);
-      (window as any).ttq.track('ClickButton', {
-        // The base pixel auto-captures this from the URL, but we pass it explicitly here too
-        ttclid: tiktokClickId 
-      });
-    }
+   
   };
 
   return (

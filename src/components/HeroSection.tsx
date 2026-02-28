@@ -24,14 +24,7 @@ const HeroSection = () => {
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   // Fire 'ViewContent' client-side on page load
-  useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).ttq) {
-      console.log(`📡 [Tracking - Hero] Firing TikTok ViewContent client-side`);
-      (window as any).ttq.track('ViewContent', {
-        ttclid: tiktokClickId
-      });
-    }
-  }, [tiktokClickId]);
+ 
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
@@ -43,12 +36,7 @@ const HeroSection = () => {
     }
 
     // Fire TikTok Pixel 'ClickButton' client-side
-    if (typeof window !== "undefined" && (window as any).ttq) {
-      console.log(`📡 [Tracking - Hero] Firing TikTok ClickButton client-side`);
-      (window as any).ttq.track('ClickButton', {
-        ttclid: tiktokClickId
-      });
-    }
+   
   };
 
   return (
