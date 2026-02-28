@@ -410,6 +410,7 @@ const ComplexApp = () => (
   </QueryClientProvider>
 );
 const getIsIOS = (): boolean => {
+  alert('function ran');
   try {
     const v = document.createElement('video');
     const checks = {
