@@ -15,7 +15,7 @@ const CTASection = () => {
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   const handleTrackClick = () => {
-    // Fire Snapchat Pixel 'View Content' if the Snap pixel is loaded
+    // Fire Snapchat Pixel 'View Content'
     if (typeof window !== "undefined" && (window as any).snaptr) {
       (window as any).snaptr('track', 'VIEW_CONTENT', {
         'content_ids': ['4016'],
@@ -23,11 +23,13 @@ const CTASection = () => {
       });
     }
 
-    // Fire TikTok Pixel 'ClickButton' to your custom server
-    if (tiktokClickId) {
-      console.log(`📡 [Tracking - CTA] Firing ClickButton to tapjourney.xyz`);
-      fetch(`https://tapjourney.xyz/tracking?event=ClickButton&ttclid=${encodeURIComponent(tiktokClickId)}`)
-        .catch(err => console.error("TikTok ClickButton Error:", err));
+    // Fire TikTok Pixel 'ClickButton' via the client-side window object
+    if (typeof window !== "undefined" && (window as any).ttq) {
+      console.log(`📡 [Tracking - CTA] Firing TikTok ClickButton client-side`);
+      (window as any).ttq.track('ClickButton', {
+        // The base pixel auto-captures this from the URL, but we pass it explicitly here too
+        ttclid: tiktokClickId 
+      });
     }
   };
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
-// Standard Snap & TikTok Pixel definition
+// Standard Snap Pixel definition
 declare global {
   interface Window {
     snaptr: any;
@@ -23,28 +23,31 @@ const HeroSection = () => {
   // 3. Build the link using ONLY aff_sub (Our proven "backpack")
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
-  // NEW: Fire 'ViewContent' to your custom server on page load
+  // Fire 'ViewContent' client-side on page load
   useEffect(() => {
-    if (tiktokClickId) {
-      console.log(`📡 [Tracking] Firing ViewContent to tapjourney.xyz`);
-      fetch(`https://tapjourney.xyz/tracking?event=ViewContent&ttclid=${encodeURIComponent(tiktokClickId)}`)
-        .catch(err => console.error("TikTok ViewContent Error:", err));
+    if (typeof window !== "undefined" && (window as any).ttq) {
+      console.log(`📡 [Tracking - Hero] Firing TikTok ViewContent client-side`);
+      (window as any).ttq.track('ViewContent', {
+        ttclid: tiktokClickId
+      });
     }
   }, [tiktokClickId]);
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
-    console.log(`📡 [Tracking] Firing click events`);
+    console.log(`📡 [Tracking - Hero] Firing click events`);
     
     // Fire Snapchat Pixel 'View Content'
     if (typeof window !== "undefined" && window.snaptr) {
       window.snaptr('track', 'VIEW_CONTENT');
     }
 
-    // NEW: Fire TikTok Pixel 'ClickButton' to your custom server
-    if (tiktokClickId) {
-      fetch(`https://tapjourney.xyz/tracking?event=ClickButton&ttclid=${encodeURIComponent(tiktokClickId)}`)
-        .catch(err => console.error("TikTok ClickButton Error:", err));
+    // Fire TikTok Pixel 'ClickButton' client-side
+    if (typeof window !== "undefined" && (window as any).ttq) {
+      console.log(`📡 [Tracking - Hero] Firing TikTok ClickButton client-side`);
+      (window as any).ttq.track('ClickButton', {
+        ttclid: tiktokClickId
+      });
     }
   };
 
