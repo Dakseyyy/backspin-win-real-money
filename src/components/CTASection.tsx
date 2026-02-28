@@ -12,7 +12,7 @@ const CTASection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Add the active click ID to 'aff_sub' with the offer_id (4016)
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638`;
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   const handleTrackClick = () => {
     // Fire Snapchat Pixel 'View Content' if the Snap pixel is loaded
@@ -23,8 +23,12 @@ const CTASection = () => {
       });
     }
 
-    // Fire TikTok Pixel 'ViewContent' if the TikTok pixel is loaded
-   
+    // Fire TikTok Pixel 'ClickButton' to your custom server
+    if (tiktokClickId) {
+      console.log(`📡 [Tracking - CTA] Firing ClickButton to tapjourney.xyz`);
+      fetch(`https://tapjourney.xyz/tracking?event=ClickButton&ttclid=${encodeURIComponent(tiktokClickId)}`)
+        .catch(err => console.error("TikTok ClickButton Error:", err));
+    }
   };
 
   return (

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
@@ -6,7 +7,6 @@ import { useSearchParams } from "react-router-dom";
 declare global {
   interface Window {
     snaptr: any;
-
   }
 }
 
@@ -21,19 +21,31 @@ const HeroSection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Build the link using ONLY aff_sub (Our proven "backpack")
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638`;
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
+
+  // NEW: Fire 'ViewContent' to your custom server on page load
+  useEffect(() => {
+    if (tiktokClickId) {
+      console.log(`📡 [Tracking] Firing ViewContent to tapjourney.xyz`);
+      fetch(`https://tapjourney.xyz/tracking?event=ViewContent&ttclid=${encodeURIComponent(tiktokClickId)}`)
+        .catch(err => console.error("TikTok ViewContent Error:", err));
+    }
+  }, [tiktokClickId]);
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
-    console.log(`📡 [Tracking] Firing events`);
+    console.log(`📡 [Tracking] Firing click events`);
     
     // Fire Snapchat Pixel 'View Content'
     if (typeof window !== "undefined" && window.snaptr) {
       window.snaptr('track', 'VIEW_CONTENT');
     }
 
-    // Fire TikTok Pixel 'ClickButton' (no ViewContent, as requested)
-   
+    // NEW: Fire TikTok Pixel 'ClickButton' to your custom server
+    if (tiktokClickId) {
+      fetch(`https://tapjourney.xyz/tracking?event=ClickButton&ttclid=${encodeURIComponent(tiktokClickId)}`)
+        .catch(err => console.error("TikTok ClickButton Error:", err));
+    }
   };
 
   return (
@@ -80,7 +92,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           {/* THE MAIN CTA BUTTON */}
           <motion.a
-            href={affiliateLink}            // Standard direct link (No timeout hack)
+            href={affiliateLink}            // Standard direct link 
             onClick={handleTrackClick}      // Fires pixels in the background
             target="_blank"                 // Standard for affiliate links
             rel="noopener noreferrer"
