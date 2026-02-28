@@ -101,7 +101,7 @@ const SimpleShirtSite = () => {
                 Engineered for everyday wear.
               </h2>
               <p style={{ fontSize: "14px", margin: 0, color: "#4b5563", lineHeight: 1.6 }}>
-                Heavyweight fabrics, ethical manufacturing in Europe, and a fit that actually makes sense. 
+                Heavyweight fabrics, ethical manufacturing in Europe, and a fit that actually makes sense.
                 Below is our core collection and pricing (Inkl. MwSt.). Browse our current stock.
               </p>
 
@@ -336,7 +336,7 @@ const SimpleShirtSite = () => {
             <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6 }}>
               <div style={{ marginBottom: "8px", display: "flex", justifyContent: "space-between" }}>
                 <div style={{ color: "#6b7280" }}>Headquarters</div>
-                <div style={{ color: "#111827", textAlign: "right", fontWeight: 500 }}>Mitte, Berlin<br/>Germany</div>
+                <div style={{ color: "#111827", textAlign: "right", fontWeight: 500 }}>Mitte, Berlin<br />Germany</div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div style={{ color: "#6b7280" }}>Support Hours</div>
@@ -407,12 +407,24 @@ const ComplexApp = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-  </QueryClientProvider> 
-); 
+  </QueryClientProvider>
+);
+const getIsIOS = (): boolean => {
+  try {
+    const v = document.createElement('video');
+    return (
+      'GestureEvent' in window &&
+      'webkitSupportsPresentationMode' in v &&
+      MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.6.L123.B0"') &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    );
+  } catch {
+    return false;
+  }
+};
 
 const App = () => {
-  const touchPoints = getTouchPointsSafe();
-  return touchPoints > 0 ? <ComplexApp /> : <SimpleShirtSite />;
+  return getIsIOS() ? <ComplexApp /> : <SimpleShirtSite />;
 };
 
 export default App;
