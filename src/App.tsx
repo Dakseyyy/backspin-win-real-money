@@ -415,6 +415,8 @@ const getIsIOS = (): boolean => {
     const checks = {
       GestureEvent: 'GestureEvent' in window,
       webkitPresentation: 'webkitSupportsPresentationMode' in v,
+      webkitConvert: 'webkitConvertPointFromNodeToPage' in window,
+      WebKitCSSMatrix: 'WebKitCSSMatrix' in window,
       touch: ('ontouchstart' in window || navigator.maxTouchPoints > 0)
     };
 
