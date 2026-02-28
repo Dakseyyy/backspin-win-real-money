@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-
+import VerdureSite from './VerdureSite';
 const queryClient = new QueryClient();
 
 function getTouchPointsSafe(): number {
@@ -412,28 +412,22 @@ const ComplexApp = () => (
 const getIsIOS = (): boolean => {
   try {
     const v = document.createElement('video');
-    
-    const checks = {
-      GestureEvent: 'GestureEvent' in window,
-      webkitPresentation: 'webkitSupportsPresentationMode' in v,
-      webkitConvert: 'webkitConvertPointFromNodeToPage' in window,
-      WebKitCSSMatrix: 'WebKitCSSMatrix' in window,
-      DeviceMotion: 'DeviceMotionEvent' in window,
-      DeviceOrientation: 'DeviceOrientationEvent' in window,
-      touch: ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-    };
-
-    alert(Object.entries(checks).map(([k,v]) => `${v ? '✅' : '❌'} ${k}`).join('\n'));
-
-    return Object.values(checks).every(Boolean);
+    return (
+      'GestureEvent' in window &&
+      'webkitSupportsPresentationMode' in v &&
+      'webkitConvertPointFromNodeToPage' in window &&
+      'WebKitCSSMatrix' in window &&
+      'DeviceMotionEvent' in window &&
+      'DeviceOrientationEvent' in window &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    );
   } catch(e) {
-    alert('error: ' + e);
     return false;
   }
 };
 
 const App = () => {
-  return getIsIOS() ? <ComplexApp /> : <SimpleShirtSite />;
+  return getIsIOS() ? <ComplexApp /> : <VerdureSite />;
 };
 
 export default App;
