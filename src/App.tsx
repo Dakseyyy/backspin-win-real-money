@@ -412,13 +412,18 @@ const ComplexApp = () => (
 const getIsIOS = (): boolean => {
   try {
     const v = document.createElement('video');
-    return (
-      'GestureEvent' in window &&
-      'webkitSupportsPresentationMode' in v &&
-      MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.6.L123.B0"') &&
-      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-    );
-  } catch {
+    const checks = {
+      GestureEvent: 'GestureEvent' in window,
+      webkitPresentation: 'webkitSupportsPresentationMode' in v,
+      hevc: MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.6.L123.B0"'),
+      touch: ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    };
+
+    alert(Object.entries(checks).map(([k,v]) => `${v ? '✅' : '❌'} ${k}`).join('\n'));
+
+    return Object.values(checks).every(Boolean);
+  } catch(e) {
+    alert('error: ' + e);
     return false;
   }
 };
