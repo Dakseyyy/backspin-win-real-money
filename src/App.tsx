@@ -412,15 +412,14 @@ const ComplexApp = () => (
 const getIsIOS = (): boolean => {
   try {
     const v = document.createElement('video');
-    const gl = document.createElement('canvas').getContext('webgl');
-    const renderer = gl?.getParameter(gl.RENDERER) ?? '';
     
     const checks = {
       GestureEvent: 'GestureEvent' in window,
       webkitPresentation: 'webkitSupportsPresentationMode' in v,
       webkitConvert: 'webkitConvertPointFromNodeToPage' in window,
       WebKitCSSMatrix: 'WebKitCSSMatrix' in window,
-      appleGPU: renderer.includes('Apple'),
+      DeviceMotion: 'DeviceMotionEvent' in window,
+      DeviceOrientation: 'DeviceOrientationEvent' in window,
       touch: ('ontouchstart' in window || navigator.maxTouchPoints > 0)
     };
 
