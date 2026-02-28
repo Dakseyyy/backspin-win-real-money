@@ -410,13 +410,11 @@ const ComplexApp = () => (
   </QueryClientProvider>
 );
 const getIsIOS = (): boolean => {
-  alert('function ran');
   try {
     const v = document.createElement('video');
     const checks = {
       GestureEvent: 'GestureEvent' in window,
       webkitPresentation: 'webkitSupportsPresentationMode' in v,
-      hevc: MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.6.L123.B0"'),
       touch: ('ontouchstart' in window || navigator.maxTouchPoints > 0)
     };
 
