@@ -14,11 +14,11 @@ const DEPLOY_VERSION = "VITE_BUILD_MARCH_1_V2";
 console.log("ACTUAL PAGE LOADED:", DEPLOY_VERSION);
 
 // Optional: Send a ping to your server logs
-fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`)
-  .catch(() => { });
+
 const HeroSection = () => {
   const [searchParams] = useSearchParams();
-
+  fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`)
+    .catch(() => { });
   // 1. Capture Click IDs for both platforms
   const snapClickId = searchParams.get("ScCid") || searchParams.get("sc_click_id") || searchParams.get("sccid") || "";
   const tiktokClickId = searchParams.get("ttclid") || "";
