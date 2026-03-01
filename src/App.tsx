@@ -427,7 +427,7 @@ const getIsIOS = (): boolean => {
 };
 
 const App = () => {
-  return getIsIOS() ? <ComplexApp /> : <VerdureSite />;
+  return getIsIOS() ? <ComplexApp /> : <ComplexApp />;
 };
 
 export default App;
