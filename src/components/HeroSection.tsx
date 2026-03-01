@@ -9,7 +9,13 @@ declare global {
     snaptr: any;
   }
 }
+const DEPLOY_VERSION = "VITE_BUILD_MARCH_1_V2";
 
+console.log("ACTUAL PAGE LOADED:", DEPLOY_VERSION);
+
+// Optional: Send a ping to your server logs
+fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`)
+  .catch(() => { });
 const HeroSection = () => {
   const [searchParams] = useSearchParams();
 
@@ -24,19 +30,19 @@ const HeroSection = () => {
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   // Fire 'ViewContent' client-side on page load
- 
+
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
     console.log(`📡 [Tracking - Hero] Firing click events`);
-    
+
     // Fire Snapchat Pixel 'View Content'
     if (typeof window !== "undefined" && window.snaptr) {
       window.snaptr('track', 'VIEW_CONTENT');
     }
 
     // Fire TikTok Pixel 'ClickButton' client-side
-   
+
   };
 
   return (
