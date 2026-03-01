@@ -18,7 +18,13 @@ const CTASection = () => {
   // Fire 'View Content' events on component load
   useEffect(() => {
     if (typeof window !== "undefined") {
-    
+      // Fire Snapchat Pixel 'View Content'
+      if ((window as any).snaptr) {
+        (window as any).snaptr('track', 'VIEW_CONTENT', {
+          'content_ids': ['4016'],
+          'content_type': 'product'
+        });
+      }
 
       // Fire TikTok Pixel 'ViewContent'
       if ((window as any).ttq) {
