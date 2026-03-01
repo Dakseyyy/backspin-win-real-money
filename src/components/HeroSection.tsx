@@ -32,38 +32,14 @@ const HeroSection = () => {
     // Send a ping to your server logs on mount
     fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`).catch(() => { });
 
-    if (typeof window !== "undefined") {
-      // Fire Snapchat Pixel 'View Content'
-      if (window.snaptr) {
-        window.snaptr('track', 'VIEW_CONTENT', {
-          'content_ids': ['4016'],
-          'content_type': 'product'
-        });
-      }
 
-      // Fire TikTok Pixel 'ViewContent'
-      if (window.ttq) {
-        window.ttq.track('ViewContent', {
-          content_id: '4016',
-          content_type: 'product'
-        });
-      }
-    }
   }, []); // Empty dependency array ensures this runs once
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
     console.log(`📡 [Tracking - Hero] Firing click events`);
 
-    if (typeof window !== "undefined") {
-      // Fire TikTok Pixel 'ClickButton' client-side
-      if (window.ttq) {
-        window.ttq.track('ClickButton', {
-          content_id: '4016',
-          content_type: 'product'
-        });
-      }
-    }
+  
   };
 
   return (

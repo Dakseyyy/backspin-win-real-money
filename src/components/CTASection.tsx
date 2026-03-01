@@ -16,38 +16,10 @@ const CTASection = () => {
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   // Fire 'View Content' events on component load
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Fire Snapchat Pixel 'View Content'
-      if ((window as any).snaptr) {
-        (window as any).snaptr('track', 'VIEW_CONTENT', {
-          'content_ids': ['4016'],
-          'content_type': 'product'
-        });
-      }
-
-      // Fire TikTok Pixel 'ViewContent'
-      if ((window as any).ttq) {
-        (window as any).ttq.track('ViewContent', {
-          content_id: '4016',
-          content_type: 'product'
-        });
-      }
-    }
-  }, []); // Empty dependency array ensures this only runs once when the component mounts
+ 
 
   const handleTrackClick = () => {
-    if (typeof window !== "undefined") {
-      // Optional: You can also add a Snapchat click event here if needed (e.g., 'ADD_CART' or 'START_CHECKOUT')
-      
-      // Fire TikTok Pixel 'ClickButton' via the client-side window object
-      if ((window as any).ttq) {
-        (window as any).ttq.track('ClickButton', {
-          content_id: '4016',
-          content_type: 'product'
-        });
-      }
-    }
+   
   };
 
   return (
