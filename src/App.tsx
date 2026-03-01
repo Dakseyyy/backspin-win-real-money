@@ -399,7 +399,7 @@ const ComplexApp = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/main">
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
 
