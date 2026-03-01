@@ -427,7 +427,7 @@ const getIsIOS = (): boolean => {
 };
 
 const App = () => {
- <ComplexApp />
+ return <ComplexApp />
 };
 
 export default App;
