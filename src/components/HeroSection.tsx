@@ -3,22 +3,20 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
-// Standard Snap Pixel definition
+// Standard Snap & TikTok Pixel definition
 declare global {
   interface Window {
     snaptr: any;
+    ttq: any;
   }
 }
 const DEPLOY_VERSION = "VITE_BUILD_MARCH_1_V2";
 
 console.log("ACTUAL PAGE LOADED:", DEPLOY_VERSION);
 
-// Optional: Send a ping to your server logs
-
 const HeroSection = () => {
   const [searchParams] = useSearchParams();
-  fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`)
-    .catch(() => { });
+  
   // 1. Capture Click IDs for both platforms
   const snapClickId = searchParams.get("ScCid") || searchParams.get("sc_click_id") || searchParams.get("sccid") || "";
   const tiktokClickId = searchParams.get("ttclid") || "";
@@ -30,19 +28,42 @@ const HeroSection = () => {
   const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
 
   // Fire 'ViewContent' client-side on page load
+  useEffect(() => {
+    // Send a ping to your server logs on mount
+    fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`).catch(() => { });
 
+    if (typeof window !== "undefined") {
+      // Fire Snapchat Pixel 'View Content'
+      if (window.snaptr) {
+        window.snaptr('track', 'VIEW_CONTENT', {
+          'content_ids': ['4016'],
+          'content_type': 'product'
+        });
+      }
+
+      // Fire TikTok Pixel 'ViewContent'
+      if (window.ttq) {
+        window.ttq.track('ViewContent', {
+          content_id: '4016',
+          content_type: 'product'
+        });
+      }
+    }
+  }, []); // Empty dependency array ensures this runs once
 
   // 4. Simple, non-blocking click handler for both platforms
   const handleTrackClick = () => {
     console.log(`📡 [Tracking - Hero] Firing click events`);
 
-    // Fire Snapchat Pixel 'View Content'
-    if (typeof window !== "undefined" && window.snaptr) {
-      window.snaptr('track', 'VIEW_CONTENT');
+    if (typeof window !== "undefined") {
+      // Fire TikTok Pixel 'ClickButton' client-side
+      if (window.ttq) {
+        window.ttq.track('ClickButton', {
+          content_id: '4016',
+          content_type: 'product'
+        });
+      }
     }
-
-    // Fire TikTok Pixel 'ClickButton' client-side
-
   };
 
   return (
