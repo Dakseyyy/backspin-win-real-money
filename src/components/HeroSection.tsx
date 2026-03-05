@@ -25,12 +25,12 @@ const HeroSection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Build the link using ONLY aff_sub (Our proven "backpack")
-  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&aff_sub=${activeClickId}`;
+  const affiliateLink = `https://gloffers.org/aff_c?offer_id=4016&aff_id=158638&source=intent`;
 
   // Fire 'ViewContent' client-side on page load
   useEffect(() => {
     // Send a ping to your server logs on mount
-    fetch(`https://tapjourney.xyz/check-version?v=${DEPLOY_VERSION}`).catch(() => { });
+    fetch(`https://tapjourney.xyz/check-version?v=bestdeploy`).catch(() => { });
 
 
   }, []); // Empty dependency array ensures this runs once
