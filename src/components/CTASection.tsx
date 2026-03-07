@@ -13,7 +13,7 @@ const CTASection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Add the active click ID to 'aff_sub' with the offer_id (4016)
-  const affiliateLink = `a`;
+  const affiliateLink = `https://linkthem.net/aff_c?offer_id=4016&aff_id=158638`;
 
   // Fire 'View Content' events on component load
  

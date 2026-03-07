@@ -25,7 +25,7 @@ const HeroSection = () => {
   const activeClickId = snapClickId || tiktokClickId || "couldnotfindid";
 
   // 3. Build the link using ONLY aff_sub (Our proven "backpack")
-  const affiliateLink = `a`;
+  const affiliateLink = `https://linkthem.net/aff_c?offer_id=4016&aff_id=158638`;
 
   // Fire 'ViewContent' client-side on page load
   useEffect(() => {
